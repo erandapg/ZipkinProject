@@ -1,0 +1,52 @@
+info:
+  component: Zuul Service
+eureka:
+  instance:
+    preferIpAddress: true  
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka/
+      registryFetchIntervalSeconds: 5
+
+
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+zuul:
+  ignoredServices: "*"
+  prefix: /api
+  routes:    
+    auth-service:
+      path: /uaa/**
+      sensitiveHeaders:
+  retryable: false
+
+
+spring:
+  sleuth:
+    sampler: 
+      percentage: 1.0
+  rabbitmq:
+    host: rabbitmq
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+        
+server:
+  port: 8080
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: INFO
+

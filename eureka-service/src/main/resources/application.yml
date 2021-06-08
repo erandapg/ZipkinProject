@@ -1,0 +1,16 @@
+server:
+  port: 8761
+security:
+  basic:
+    enabled: true
+  user:
+      name: admin
+      password: 123456789v
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    waitTimeInMsWhenSyncEmpty: 0

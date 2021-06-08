@@ -1,0 +1,31 @@
+info:
+  component: Hystrix Dashboard
+
+spring:
+  rabbitmq:
+    host: rabbitmq
+    
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: 7979
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
+
+eureka:   
+  client:
+    region: default
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka/
+      registryFetchIntervalSeconds: 5  
+    preferSameZone: false
+  instance:
+    virtualHostName: ${spring.application.name}
+    preferIpAddress: true
